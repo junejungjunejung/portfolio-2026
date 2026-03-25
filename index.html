@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>June Jung | Senior Experience Consultant</title>
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="preload" as="image" href="assets/ss-hero.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/ss-hero.jpg">
+  <link rel="preload" as="image" href="assets/ej-hero.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/ej-hero.jpg">
+  <link rel="preload" as="image" href="assets/bt-hero.webp" type="image/webp">
+  <link rel="preload" as="image" href="assets/bt-hero.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─── */ 
+    :root {
+      --black:    #000000;
+      --white:    #ffffff;
+      --grey-1:   #111111;
+      --grey-2:   #3a3a3a;
+      --grey-3:   #6b6b6b;
+      --grey-4:   #9e9e9e; 
+      --grey-5:   #c8c8c8; /* not in use */
+      --grey-6:   #e4e4e4; 
+      --grey-7:   #f2f2f2; 
+      --success:  #2E7D32;
+      --error:    #D32F2F;
+      --border:   1px solid var(--black);
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --nav-h: 52px;
+    }
+
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-sans);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font-family: var(--font-sans); cursor: pointer; }
+    input, textarea, select { font-family: var(--font-mono); }
+
+    /* ─── GLOBAL LAYOUT ─── */
+    .container {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      border-left: var(--border);
+      border-right: var(--border);
+      min-height: 100vh;
+    }
+    .border-b { border-bottom: var(--border); }
+    .border-r { border-right: var(--border); }
+    .mono {
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      margin-top: 16px;
+    }
+
+    /* ─── ACCESSIBILITY UTILITIES ─── */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    *:focus-visible {
+      outline: 2px solid var(--black);
+      outline-offset: 4px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      grid-column: span 12;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      height: var(--nav-h);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 100;
+    }
+    .nav-logo {
+      display: flex;         
+      align-items: center;   
+      gap: 8px;              
+      font-family: var(--font-sans);
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .nav-links { display: flex; align-items: center; gap: 4px; }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      transition: var(--transition);
+      color: var(--black);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--black);
+      color: var(--white);
+    }
+    .resume-btn {
+      border: var(--border);
+      margin-left: 16px !important;
+    }
+
+    /* ─── SPA VIEWS ─── */
+    main { grid-column: span 12; }
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ─── HOME: HERO ─── */
+    .hero { padding: 64px 40px; }
+    .hero-eyebrow {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-3);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 52px);
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── PROJECT GRID ─── */
+    .split-layout { display: grid; grid-template-columns: 7fr 5fr; }
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .card {
+      height: 500px;
+      padding: 36px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: var(--white);
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .card.full {
+      grid-column: span 2;
+      height: 580px;
+    }
+    .card:hover { transform: scale(1.012); z-index: 2; }
+    .card .card-num {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .card h2 {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      z-index: 2;
+    }
+    .card .card-sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      margin-top: 8px;
+    }
+
+    /* ─── CARD 01 HERO IMAGE ─── */
+    .card-ss {
+      background-color: #002741;
+      background-image: -webkit-image-set(
+        url('assets/ss-hero.webp') type('image/webp'),
+        url('assets/ss-hero.jpg')  type('image/jpeg')
+      );
+      background-image: image-set(
+        url('assets/ss-hero.webp') type('image/webp'),
+        url('assets/ss-hero.jpg')  type('image/jpeg')
+      );
+      background-size: cover;
+      background-position: right top;
+      background-repeat: no-repeat;
+      padding: 0;
+    }
+    .card-ss .card-img-block { display: none; }
+    .card-ss .card-text-block {
+      position: relative;
+      z-index: 1;
+      padding: 48px 40px 36px;
+      margin-top: auto;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75) 70%,
+        rgba(0,0,0,0.0) 100%
+      );
+    }
+
+    /* ─── CARD 02 HERO IMAGE ─── */
+    .card-ej {
+      background-color: #0a2540;
+      background-image: -webkit-image-set(
+        url('assets/ej-hero.webp') type('image/webp'),
+        url('assets/ej-hero.jpg')  type('image/jpeg')
+      );
+      background-image: image-set(
+        url('assets/ej-hero.webp') type('image/webp'),
+        url('assets/ej-hero.jpg')  type('image/jpeg')
+      );
+      background-size: cover;
+      background-position: right top;
+      background-repeat: no-repeat;
+      padding: 0;
+    }
+    .card-ej .card-img-block { display: none; }
+    .card-ej .card-text-block {
+      position: relative;
+      z-index: 1;
+      padding: 48px 40px 36px;
+      margin-top: auto;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75) 70%,
+        rgba(0,0,0,0.0) 100%
+      );
+    }
+
+    /* ─── CARD 03 HERO IMAGE ─── */
+    .card-bt {
+      background-color: #5f6bad;
+      background-image: -webkit-image-set(
+        url('assets/bt-hero.webp') type('image/webp'),
+        url('assets/bt-hero.jpg')  type('image/jpeg')
+      );
+      background-image: image-set(
+        url('assets/bt-hero.webp') type('image/webp'),
+        url('assets/bt-hero.jpg')  type('image/jpeg')
+      );
+      background-size: cover;
+      background-position: right top;
+      background-repeat: no-repeat;
+      padding: 0;
+    }
+    .card-bt .card-img-block { display: none; }
+    .card-bt .card-text-block {
+      position: relative;
+      z-index: 1;
+      padding: 48px 40px 36px;
+      margin-top: auto;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75) 70%,
+        rgba(0,0,0,0.0) 100%
+      );
+    }
+
+    /* ─── TECHNICAL SIDEBAR ─── */
+    .tech-sidebar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      font-family: var(--font-mono);
+    }
+    .tech-col { padding: 40px; }
+    .tech-col h3 {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      margin-bottom: 24px;
+      color: var(--grey-2);
+      padding-bottom: 14px;
+      border-bottom: var(--border);
+      text-transform: uppercase;
+    }
+    .tech-col ul { list-style: none; }
+    .tech-col li {
+      font-size: 11px;
+      color: var(--grey-1);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--grey-6);
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tech-col li::before { content: '↳'; color: var(--grey-4); font-size: 10px; }
+    .tech-col li:last-child { border-bottom: none; }
+
+    /* ─── ABOUT ─── */
+    .content-block { padding: 40px; }
+    .content-block p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--grey-2);
+      margin-bottom: 20px;
+      max-width: 600px;
+    }
+    .content-block p strong { color: var(--black); font-weight: 500; }
+
+    /* ─── ABOUT PAGE SPECIFIC ─── */
+    .about-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-3);
+      margin-bottom: 20px;
+      display: block;
+    }
+    /* Narrative + Perspective row */
+    .about-narrative-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: var(--border);
+    }
+    .about-narrative {
+      padding: 40px;
+      border-right: var(--border);
+    }
+    .about-narrative .section-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: var(--border);
+    }
+    .about-narrative p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--grey-2);
+      margin-bottom: 16px;
+    }
+    .about-narrative p strong { color: var(--black); font-weight: 500; }
+    .about-perspective {
+      padding: 40px;
+      font-family: var(--font-mono);
+    }
+    .about-perspective .section-tag {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: var(--border);
+    }
+    .about-perspective .philosophy-label {
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: var(--grey-2);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .about-perspective blockquote {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--grey-1);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      border-left: 2px solid var(--black);
+      padding-left: 18px;
+      margin-bottom: 28px;
+    }
+    .about-perspective p {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--grey-2);
+      margin-bottom: 16px;
+    }
+    .about-perspective p strong { color: var(--black); font-weight: 500; }
+
+    /* Impact data blocks */
+    .about-impact {
+      border-bottom: var(--border);
+    }
+    .impact-header{
+      padding: 40px 40px 0px; 
+    }
+    .impact-header h3{
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: var(--grey-2);
+      text-transform: uppercase;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      border-bottom: var(--border);
+    }
+    .impact-blocks {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .impact-block {
+      padding: 24px 40px 40px;
+      position: relative; 
+    }
+    .impact-num {
+      font-size: clamp(52px, 6vw, 80px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .impact-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+    }
+    .impact-desc {
+      font-size: 12px;
+      color: var(--grey-3);
+      margin-top: 6px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.03em;
+    }
+
+    /* Three pillars */
+    .about-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: var(--border);
+      font-family: var(--font-mono);
+    }
+    .pillar-col { padding: 40px; }
+    .pillar-col:not(:last-child) { border-right: var(--border); }
+    .pillar-col h3 {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      color: var(--grey-2);
+      text-transform: uppercase;
+      padding-bottom: 14px;
+      margin-bottom: 20px;
+      border-bottom: var(--border);
+    }
+    .pillar-col p {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--grey-2);
+      margin-bottom: 16px;
+    }
+    .pillar-col p strong { color: var(--black); font-weight: 500; }
+
+    /* ─── PROJECT DETAIL ─── */
+    .project-hero { padding: 64px 40px; }
+    .project-hero h1 {
+      font-size: clamp(28px, 4vw, 52px);
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .detail-content-row { display: grid; grid-template-columns: 1fr 1fr;}
+    .detail-block h3 {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: var(--border);
+    }
+    .detail-block p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--grey-2);
+      margin-bottom: 12px;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--grey-6);
+    }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-key { color: var(--grey-2); text-transform: uppercase; padding-right: 16px;}
+    .spec-val { color: var(--black); }
+
+    .asset-box {
+      width: 100%;
+      aspect-ratio: 1920 / 1120;
+      background: var(--grey-7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .asset-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--grey-3);
+      text-transform: uppercase;
+    }
+    .asset-caption {
+      background: var(--grey-7);
+      padding: 16px 40px 14px;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--grey-2);
+      line-height: 1.6;
+    }
+    .back-row {
+      padding: 32px 40px;
+      text-align: center;
+    }
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border: var(--border);
+      display: inline-block;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .back-link:hover { background: var(--black); color: var(--white); }
+
+    /* ─── CONTACT ─── */
+    .form-group { margin-bottom: 36px; }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+      margin-bottom: 12px;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      border: none;
+      border-bottom: var(--border);
+      padding: 10px 0;
+      font-size: 13px;
+      background: transparent;
+      outline: none;
+      color: var(--black);
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--grey-2); }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--grey-3); }
+    .radio-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); 
+      gap: 8px; 
+      margin-top: 4px;
+      width: 100%; 
+    }
+    .radio-label {
+      display: flex !important;           
+      justify-content: center !important; 
+      align-items: center !important;     
+      text-align: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 6px 12px;
+      border: var(--border);
+      color: var(--grey-2);
+      transition: background 0.15s, color 0.15s;
+    }
+    .radio-label:has(input:checked) { background: var(--black); color: var(--white); }
+    .radio-label:has(input:focus-visible) { outline: 2px solid var(--black); outline-offset: 2px; }
+    .oh-honey { display: none; }
+    .submit-btn {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      background: var(--black);
+      color: var(--white);
+      border: var(--border);
+      width: 100%;
+      transition: background 0.15s, color 0.15s;
+    }
+    .submit-btn:hover { background: var(--white); color: var(--black); }
+    #form-msg {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: var(--success);
+      margin-top: 12px;
+      min-height: 16px;
+    }
+    .channel-item { margin-bottom: 36px; }
+    .channel-item h4 {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+    .channel-item a,
+    .channel-item p {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--black);
+      transition: color 0.15s;
+    }
+    .channel-item a:hover { color: var(--grey-3); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      grid-column: span 12;
+      padding: 0 24px;
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey-2);
+    }
+    .sys-dot {
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--grey-1);
+      margin-right: 8px;
+      animation: pulse 2.4s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .resume-btn {margin-left: 0px !important;}
+      .hero { padding: 40px 24px; }
+      .split-layout,
+      .project-grid,
+      .detail-content-row,
+      .tech-sidebar { grid-template-columns: 1fr; }
+      .border-r { border-right: none; border-bottom: var(--border); }
+      .card.full { grid-column: span 1; height: 500px;}
+      .card.half {height: 500px;}
+      .card { padding: 32px 24px;}
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .project-hero { padding: 40px 24px; }
+      .content-block { padding: 32px 24px; }
+      .tech-col { padding: 32px 24px; }
+      .back-row { padding: 24px; }
+      /* about page */
+      .about-narrative-row { grid-template-columns: 1fr; }
+      .about-narrative { border-right: none; border-bottom: var(--border); padding: 32px 24px; }
+      .about-perspective { padding: 32px 24px; }
+      .about-pillars { grid-template-columns: 1fr; }
+      .pillar-col { border-right: none !important; border-bottom: var(--border); padding: 32px 24px; }
+      .pillar-col:last-child { border-bottom: none; }
+      .impact-header{ padding: 32px 24px 0px 24px; }
+      .impact-blocks { grid-template-columns: 1fr; }
+      .impact-block { border-right: none !important; border-bottom: none;}
+      .impact-block:last-child { border-bottom: none;}
+      /* ─── CARD 01 MOBILE STACKED ─── */
+      .card-ss {
+        background-image: none;
+        background-color: #669E9F;
+        height: auto;
+        flex-direction: column;
+        padding: 0;
+      }
+      .card-ss::after { display: none; }
+      .card-ss .card-img-block {
+        display: block;
+        height: 240px;
+        background-image: -webkit-image-set(
+          url('assets/ss-hero.webp') type('image/webp'),
+          url('assets/ss-hero.jpg')  type('image/jpeg')
+        );
+        background-image: image-set(
+          url('assets/ss-hero.webp') type('image/webp'),
+          url('assets/ss-hero.jpg')  type('image/jpeg')
+        );
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .card-ss .card-text-block {
+        background: linear-gradient(
+            to top,
+            rgba(6, 61, 62, 0.9) 80%, 
+            #669E9F 100%
+          ) !important;
+        padding: 24px 24px 32px;
+        margin-top: 0;
+        position: relative;
+        z-index: 1;
+      }
+      /* ─── CARD 02 MOBILE STACKED ─── */
+      .card-ej {
+        background-image: none;
+        background-color: #508DC3;
+        height: auto;
+        flex-direction: column;
+        padding: 0;
+      }
+      .card-ej::after { display: none; }
+      .card-ej .card-img-block {
+        display: block;
+        height: 240px;
+        background-image: -webkit-image-set(
+          url('assets/ej-hero.webp') type('image/webp'),
+          url('assets/ej-hero.jpg')  type('image/jpeg')
+        );
+        background-image: image-set(
+          url('assets/ej-hero.webp') type('image/webp'),
+          url('assets/ej-hero.jpg')  type('image/jpeg')
+        );
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        flex-shrink: 0;
+      }
+      .card-ej .card-text-block {
+        background: linear-gradient(
+            to top,
+            rgba(7, 51, 93, 0.9) 80%, 
+            #508DC3 100%
+          ) !important;
+        padding: 24px 24px 32px;
+        margin-top: 0;
+        position: relative;
+        z-index: 1;
+      }
+      /* ─── CARD 03 MOBILE STACKED ─── */
+      .card-bt {
+        background-image: none;
+        background-color: #5f6bad;
+        height: auto;
+        flex-direction: column;
+        padding: 0;
+      }
+      .card-bt::after { display: none; }
+      .card-bt .card-img-block {
+        display: block;
+        height: 240px;
+        background-image: -webkit-image-set(
+          url('assets/bt-hero.webp') type('image/webp'),
+          url('assets/bt-hero.jpg')  type('image/jpeg')
+        );
+        background-image: image-set(
+          url('assets/bt-hero.webp') type('image/webp'),
+          url('assets/bt-hero.jpg')  type('image/jpeg')
+        );
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .card-bt .card-text-block {
+        background: linear-gradient(
+            to top,
+            rgba(29, 36, 92, 0.9) 80%, 
+            #5f6bad 100%
+          ) !important;
+        padding: 24px 24px 32px;
+        margin-top: 0;
+        position: relative;
+        z-index: 1;
+      }
+      .asset-caption {
+        padding: 14px 24px 12px;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo-text { display: none; }
+      footer { flex-direction: column; height: auto; padding: 14px 24px; gap: 6px; align-items: flex-start;}
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content"
+    style="position:absolute;top:-999px;left:0;z-index:9999;padding:10px 20px;
+            background:var(--black);color:var(--white);font-family:var(--font-mono);
+            font-size:11px;letter-spacing:0.1em;text-transform:uppercase;"
+    onfocus="this.style.top='0'"
+    onblur="this.style.top='-999px'">
+    Skip to main content
+  </a>
+
+  <div class="container">
+    <nav class="border-b">
+      <div class="nav-logo nav-btn" role="button" tabindex="0" data-target="home" aria-label="Go to Home" onclick="showView('home')">
+        <img src="logo.svg" alt="June Jung" style="height:24px; width:auto;">
+        <span class="logo-text">JUNE JUNG</span>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="nav-btn active" data-target="home" aria-current="page">Projects</a>
+        <a href="#" class="nav-btn" data-target="about">About</a>
+        <a href="#" class="nav-btn" data-target="contact">Contact</a>
+        <a href="June_Jung_Resume_2026.pdf" class="resume-btn" download>Resume.pdf</a>
+      </div>
+    </nav>
+
+    <main id="main-content" tabindex="-1">
+      <section id="home" class="view active">
+        <div class="hero border-b">
+          <span class="hero-eyebrow">Senior User Experience Designer (Senior Experience Consultant)</span>
+          <h1>Enterprise&nbsp;&nbsp;Ecosystems.<br>Engineering&nbsp;&nbsp;Empathy.</h1>
+          <p class="mono">Turning complex enterprise requirements into unified, scalable experiences.</p>
+        </div>
+
+        <div class="project-grid border-b">
+          <div class="card card-ss half border-r" role="button" tabindex="0" aria-label="View Salesforce Industrial Service Portal project" onclick="openProject('ss')">
+            <div class="card-img-block"></div>
+            <div class="card-text-block">
+              <span class="card-num">01 // Manufacturing / Strategy</span>
+              <h2>Salesforce: Industrial Service Portal Modernization</h2>
+              <p class="card-sub">Leading the research synthesis and design system distillation for a global industrial leader, bridging the gap between legacy complexity and Salesforce scalability.</p>
+            </div>
+          </div>
+          <div class="card card-ej half border-b" role="button" tabindex="0" aria-label="View Salesforce Wealth Management Platform Transformation project" onclick="openProject('ej')">
+            <div class="card-img-block"></div>
+            <div class="card-text-block">
+              <span class="card-num">02 // Fintech / Agentforce AI</span>
+              <h2>Salesforce: Wealth Management Platform Transformation</h2>
+              <p class="card-sub">Leading the UX transformation of a Tier-1 financial platform, reducing technical debt by shifting from 100% custom code to an 80% OOTB-first architecture.</p>
+            </div>
+          </div>
+          <div class="card card-bt full" role="button" tabindex="0" aria-label="View Project Purse project" onclick="openProject('bt')">
+            <div class="card-img-block"></div>
+            <div class="card-text-block">
+              <span class="card-num">03 // Founding Designer / Full-Stack</span>
+              <h2>Project Purse: 360° Enterprise Wellbeing Ecosystem</h2>
+              <p class="card-sub">Architecting an end-to-end SaaS ecosystem that translates individual wellness habits into high-fidelity sentiment intelligence for executive leadership.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-sidebar border-b">
+          <div class="tech-col border-r">
+            <h3>Experience Strategy</h3>
+            <ul>
+              <li>Solution Discovery</li>
+              <li>Stakeholder Orchestration</li>
+              <li>Workshop Facilitation</li>
+              <li>Service Design</li>
+              <li>Research Synthesis</li>
+            </ul>
+          </div>
+          <div class="tech-col border-r">
+            <h3>Product Design</h3>
+            <ul>
+              <li>Enterprise Design Systems</li>
+              <li>Atomic Design Principles</li>
+              <li>Data Visualization</li>
+              <li>User Flow Logic</li>
+              <li>Accessibility (WCAG)</li>
+            </ul>
+          </div>
+          <div class="tech-col">
+            <h3>Technical Production</h3>
+            <ul>
+              <li>AI-Assisted Development</li>
+              <li>HTML5 / CSS3</li>
+              <li>Vanilla JS (ES6+)</li>
+              <li>LWC Alignment</li>
+              <li>Performance Optimization</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="project-detail" class="view">
+        <div class="project-hero border-b">
+          <span class="mono" style="color:var(--grey-3);" id="p-industry">Industry</span>
+          <h1 id="p-title" style="margin-top: 20px;">Project Title</h1>
+        </div>
+        <div class="split-layout border-b">
+          <div class="content-block detail-block border-r">
+            <h3>Executive Summary</h3>
+            <p id="p-summary"></p>
+          </div>
+          <div class="content-block detail-block">
+            <h3>Project Specs</h3>
+            <div class="spec-row"><span class="spec-key">Role</span><span class="spec-val" id="p-role">—</span></div>
+            <div class="spec-row"><span class="spec-key">Duration</span><span class="spec-val" id="p-duration">—</span></div>
+            <div class="spec-row"><span class="spec-key">Stack</span><span class="spec-val" id="p-stack">—</span></div>
+            <div class="spec-row"><span class="spec-key">Impact</span><span class="spec-val" id="p-impact">—</span></div>
+          </div>
+        </div>
+
+        <div class="asset-box">
+          <picture>
+            <source id="p-asset1-webp" type="image/webp">
+            <img id="p-asset1-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;">
+          </picture>
+        </div>
+        <div class="asset-caption border-b">
+          <p id="p-asset1-caption"></p>
+        </div>
+
+        <div class="detail-content-row border-b">
+          <div class="content-block detail-block border-r">
+            <h3>Discovery &amp; Strategy</h3>
+            <p id="p-discovery"></p>
+          </div>
+          <div class="content-block detail-block">
+            <h3>Technical Production</h3>
+            <p id="p-production"></p>
+          </div>
+        </div>
+
+        <div class="asset-box">
+          <picture>
+            <source id="p-asset2-webp" type="image/webp">
+            <img id="p-asset2-img" src="" alt="" style="width:100%;height:100%;object-fit:cover;">
+          </picture>
+        </div>
+        <div class="asset-caption border-b">
+          <p id="p-asset2-caption"></p>
+        </div>
+
+        <div class="detail-content-row border-b">
+          <div class="content-block detail-block border-r">
+            <h3>Delivered Value</h3>
+            <p id="p-value"></p>
+          </div>
+          <div class="content-block detail-block">
+            <h3>Lessons Learned</h3>
+            <p id="p-lessons"></p>
+          </div>
+        </div>
+
+        <div class="back-row border-b">
+          <span class="back-link" role="button" tabindex="0" onclick="showView('home')">← Back to Projects</span>
+        </div>
+      </section>
+
+      <section id="about" class="view">
+        <div class="hero border-b">
+          <span class="about-hero-eyebrow">Senior User Experience Designer (Senior Experience Consultant)</span>
+          <h1>JUNE JUNG</h1>
+          <p class="mono">Strategy • Systems • Full-Stack Execution</p>
+          <p class="mono">Architecting high-scale digital ecosystems at the intersection of business strategy and production code.</p>
+        </div>
+
+        <div class="about-narrative-row">
+          <div class="about-narrative">
+            <p class="section-tag">The Narrative</p>
+            <p>I architect <strong>digital ecosystems</strong> that bridge the gap between <strong>high-level business strategy</strong> and <strong>technical execution</strong>. As a Senior User Experience Designer and Senior Experience Consultant at Salesforce, I specialize in transforming fragmented enterprise requirements into <strong>unified, scalable platforms</strong>. My work lives at the intersection of user needs and business feasibility—driving experience strategy for Fortune 500 institutions while maintaining a "pixel-perfect" technical standard.</p>
+            <p>At the enterprise scale, design isn't a solo act; it’s an act of translation. I thrive in the <strong>"messy middle"</strong>—that space where stakeholder opinions, legacy technical debt, and user frustrations collide. My role is to serve as the <strong>strategic glue</strong>, turning those collisions into streamlined, future-proof visions. I don’t just advocate for the user; I advocate for the <strong>entire lifecycle of the product</strong>, ensuring that what we design today is sustainable for the engineering teams of tomorrow.</p>
+          </div>
+          <div class="about-perspective">
+            <p class="section-tag">The Perspective</p>
+            <p class="philosophy-label">&gt; CORE_PHILOSOPHY:</p>
+            <blockquote>"A design is only as good as its technical execution."</blockquote>
+            <p>In an era of rapid AI integration and <strong>increasing system complexity</strong>, you need more than interface design alone—you need a <strong>designer who understands product architecture</strong> and the mechanics behind the interface. Whether I am designing a global industrial portal or an AI-driven financial dashboard, I ensure the final solution is <strong>as robust as it is intuitive</strong>.</p>
+          </div>
+        </div>
+
+        <div class="about-impact">
+          <div class="impact-header">
+            <h3>Verified Impact</h3>
+          </div>
+          <div class="impact-blocks">
+            <div class="impact-block">
+              <div class="impact-num">25%</div>
+              <div class="impact-label">Downtime Reduction</div>
+              <div class="impact-desc">Industrial asset downtime — Manufacturing Client</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-num">19K+</div>
+              <div class="impact-label">Branch Offices</div>
+              <div class="impact-desc">Financial advisor branches unified — Financial Services Client</div>
+            </div>
+            <div class="impact-block">
+              <div class="impact-num">10+</div>
+              <div class="impact-label">Enterprise Engagements</div>
+              <div class="impact-desc">Delivered across global sectors</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-pillars">
+          <div class="pillar-col">
+            <h3>Stakeholder Orchestration</h3>
+            <p>I have extensive experience navigating <strong>complex, multi-stakeholder environments</strong>. I serve as the <strong>strategic bridge</strong> aligning internal product teams, external implementation partners, and executive leadership to ensure a shared vision from <strong>discovery to deployment</strong>.</p>
+          </div>
+          <div class="pillar-col">
+            <h3>Engineering Empathy</h3>
+            <p>My approach is rooted in the belief that great design must be technically viable. I work at the <strong>intersection of UX and system architecture</strong> to ensure every user journey is optimized for performance, scalability, and <strong>long-term technical sustainability</strong>—regardless of the underlying stack.</p>
+          </div>
+          <div class="pillar-col">
+            <h3>Full-Stack Execution & AI Collaboration</h3>
+            <p>I am a <strong>"Designer who builds"</strong> with a deep foundation in front-end development. I leverage <strong>modern AI tooling</strong> to achieve <strong>seamless design-to-production parity</strong>—an approach I used to architect and code this entire portfolio for <strong>elite browser performance</strong>.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="view">
+        <div class="hero border-b">
+          <span class="hero-eyebrow" style="color:var(--grey-3);">Status: Open for strategic Consultations</span>
+          <h1>Contact / INQUIRY</h1>
+          <p class="mono" style="margin-top: 16px;">Strategic consultations, enterprise projects, or just a good conversation.</p>
+        </div>
+
+        <div class="split-layout border-b">
+          <div class="content-block border-r">
+            <form id="inquiry-form" action="https://formspree.io/f/mvzwywjj" method="POST">
+              <div class="form-group">
+                <label for="user-name">Full Name</label>
+                <input type="text" id="user-name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label for="user-org">Organization</label>
+                <input type="text" id="user-org" name="org" placeholder="Your company" />
+              </div>
+              <div class="form-group">
+                <fieldset style="border:none; padding:0; margin:0;">
+                  <legend style="font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey-2); margin-bottom: 12px;">Inquiry Topic</legend>
+                  <div class="radio-group">
+                    <label class="radio-label">
+                      <input type="radio" name="topic" value="UX Architecture" class="sr-only" required />
+                      UX Architecture
+                    </label>
+                    
+                    <label class="radio-label">
+                      <input type="radio" name="topic" value="AI Strategy" class="sr-only" />
+                      AI Strategy
+                    </label>
+                    
+                    <label class="radio-label">
+                      <input type="radio" name="topic" value="Project Inquiry" class="sr-only" />
+                      Project Inquiry
+                    </label>
+
+                    <label class="radio-label">
+                      <input type="radio" name="topic" value="Other Subject" class="sr-only" />
+                      Other Subject
+                    </label>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="form-group">
+                <label for="user-message">Message</label>
+                <textarea id="user-message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+              </div>
+              <div class="oh-honey" aria-hidden="true">
+                <label for="website_honey">Leave this blank</label>
+                <input type="text" id="website_honey" name="website_honey" tabindex="-1" autocomplete="off" />
+              </div>
+              <button type="submit" class="submit-btn">Send Inquiry</button>
+              <p id="form-msg" role="status"></p>
+            </form>
+          </div>
+          <div class="content-block">
+            <div class="channel-item">
+              <h4>Verified Endpoint</h4>
+              <div id="email-target"></div>
+            </div>
+            <div class="channel-item">
+              <h4>Professional Network</h4>
+              <a href="https://linkedin.com/in/junejungjunejung" target="_blank" rel="noopener">linkedin.com/in/junejungjunejung</a>
+            </div>
+            <div class="channel-item">
+              <h4>Timezone</h4>
+              <p>PST — Vancouver, BC</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="current-year">2026</span> June Jung // Architectural UX</span>
+      <span><span class="sys-dot"></span>Spam_Shield: Active &nbsp;·&nbsp; 0ms Latency &nbsp;·&nbsp; Vanilla_V1.3</span>
+    </footer>
+  </div>
+
+  <script>
+    // ─── 1. SPA NAVIGATION & ACCESSIBILITY ───
+    const navBtns  = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('.view');
+
+    navBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = btn.getAttribute('data-target');
+        if (target) showView(target);
+      });
+
+      // Keyboard enter/space triggers navigation
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const target = btn.getAttribute('data-target');
+          if (target) showView(target);
+        }
+      });
+    });
+
+    // Global Keyboard listener for custom button divs (Cards and Back links)
+    document.querySelectorAll('[role="button"]:not(.nav-btn)').forEach(el => {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          el.click(); // Triggers existing onclick attribute
+        }
+      });
+    });
+
+    function showView(viewId) {
+      sections.forEach(s => s.classList.remove('active'));
+      const targetEl = document.getElementById(viewId);
+      
+      if (targetEl) {
+        targetEl.classList.add('active');
+        
+        // FOCUS MANAGEMENT: Map focus to the new section's main heading
+        const heading = targetEl.querySelector('h1, h2');
+        if (heading) {
+          heading.setAttribute('tabindex', '-1');
+          heading.focus();
+          heading.style.outline = "none"; 
+        }
+      }
+
+      // 1. Remove active state from ALL nav buttons
+      navBtns.forEach(b => {
+        b.classList.remove('active');
+        b.removeAttribute('aria-current');
+      });
+
+      // 2. USE querySelectorAll to find ALL buttons matching the viewId
+      const activeBtns = document.querySelectorAll(`.nav-btn[data-target="${viewId}"]`);
+      activeBtns.forEach(btn => {
+        btn.classList.add('active');
+        if (btn.tagName === 'A') { // Only set aria-current on the actual links
+          btn.setAttribute('aria-current', 'page');
+        }
+      });
+
+      window.scrollTo(0, 0);
+    }
+
+    // ─── 2. PROJECT DATA ───
+    const projectData = {
+      'ss': {
+        asset1: 'assets/ss-asset-1',
+        asset1caption: 'Workshop Synthesis: Synthesizing 40+ cross-scenario user flows and end-to-end customer journeys. This mapping translated raw workshop discovery into a validated strategic roadmap, ensuring MVP feasibility while resolving high-friction points across the service lifecycle.',
+        asset1alt: 'A four-quadrant collage documenting the UX synthesis process: the left side shows physical sticky note ideation for user flows and journey maps, while the right side displays their respective high-fidelity outputs',
+        asset2: 'assets/ss-asset-2',
+        asset2caption: 'Strategic System Distillation: A lean, LWC-aligned component library (top-left) architected from the client’s massive proprietary design system to enable a high-fidelity, OOTB-first Salesforce experience (bottom-right) without sacrificing brand aesthetic.',
+        asset2alt: 'A diagonal composition showcasing the design-to-production bridge: the top-left features a technical view of a custom Figma component library built for Salesforce, while the bottom-right displays the resulting high-fidelity portal interface.',
+        title:      'Industrial Service Portal Modernization',
+        industry:   'Salesforce / Manufacturing / Strategy',
+        summary:    'A global leader in industrial technology required a centralized portal to streamline complex equipment maintenance and procurement workflows. Supporting the UX Architect, I was responsible for translating raw stakeholder input into a validated Enterprise Journey Map—consisting of 99 user stories and 40 user flows—and a Salesforce-optimized Design System. I acted as the technical bridge between the client\'s proprietary design language and the third-party development team (Accenture), ensuring the final product was human-centered and technically sustainable within Salesforce Experience Cloud.',
+        role:       'Senior Experience Designer & Systems Lead',
+        duration:   '14-Week Strategic Transformation',
+        stack:      'Salesforce Experience Cloud, LWC, Figma, Client IX Design System',
+        impact:     '99 user stories. 40 flows. One source of truth',
+        discovery:  'Supported the UX Architect across an 8-week research phase, attending one-on-one interviews and collaborative workshops with five key end-user personas. I captured qualitative data during Feature Categorization sessions, where users sorted proposed functionality into Must-Have, Nice-to-Have, and Not Relevant categories. I then took full ownership of the User Journey Map deliverable—synthesizing these requirements into a comprehensive End-to-End map supported by 99 user stories and 40 detailed user flows covering five lifecycle stages (Awareness, Buy-In, Onboarding, Utilization, and Retention). This documented both User Actions and Organizational Requirements to align user needs with business priorities.',
+        production: 'Audited the client\'s proprietary design library and distilled it into a streamlined, Salesforce-compatible component library of 40+ reusable LWC-aligned components — applying the client\'s IX Design System with a dark mode theme, client-specific typography, and standardized navigation patterns to ensure brand consistency at every touchpoint. Weekly Technical Feasibility Syncs with the Accenture development team were established as a proactive governance measure — ensuring every wireframe was vetted against platform constraints before development began, and enabling intentional design pivots away from excessive custom Apex code toward standard Salesforce patterns. Usability checkpoints were enforced at every wireframe review stage, utilizing Figma native styles and variables to ensure 1:1 design-to-code parity during the third-party handoff.',
+        value: 'Delivered a unified customer portal that allowed industrial users to manage assets and resolve service issues in a single digital destination. The research-validated Journey Map and lean design system ensured the portal was built around real user behavior. By governing the collaboration between design and development, the engagement proved that enterprise portals succeed when design integrity is maintained through rigorous technical documentation.',
+        lessons: 'This engagement reinforced that synthesizing meeting notes into technical structure is a core design deliverable—turning stakeholder ambiguity into 99 user stories and 40 user flows that aligned both executives and developers. The success of the project relied on "Engineering Empathy," where constant communication with the development team surfaced constraints early, allowing for more intentional design pivots. Simplification was the primary strategy, ensuring the final system was both powerful for the user and maintainable for the client.'
+      },
+      'ej': {
+        asset1: 'assets/ej-asset-1',
+        asset1caption: 'Architectural Evolution: Re-engineering a legacy-first environment (left) into a scalable, OOTB-first Salesforce foundation (right). This transformation shifted the platform from a 100% custom-coded build to a native-first configuration, eliminating technical debt while establishing the data structure required for Agentforce AI readiness.',
+        asset1alt: 'A three-part comparison of platform architecture: the top-left shows the original legacy custom platform; the bottom-left shows the current heavily-customized Salesforce implementation; the right side displays the new simplified, OOTB-first Salesforce design optimized for scalability and AI data capture.',
+        asset2: 'assets/ej-asset-2',
+        asset2caption: 'Intelligent Interaction Loop: Streamlining the meeting lifecycle through automated transcription and AI synthesis. This flow (top-left to bottom-left) demonstrates how raw advisor-client interactions are captured and automatically translated into structured data—including Life Events, Interest Tags, and Follow-up Tasks—to eliminate manual documentation and ensure AI-ready data accuracy.',
+        asset2alt: 'A four-quadrant collage with arrows showing a clockwise progression of a client meeting epic: Top-left starts with the meeting call widget; Top-right shows synthesized meeting notes; Bottom-right displays AI-generated tasks, interest tags, and life events; Bottom-left shows the final client screen fully populated with the captured data.',
+        title:      'Wealth Management Platform Transformation',
+        industry:   'Salesforce / Financial Services / Agentforce AI',
+        summary:    'A leading Tier-1 financial services firm was operating on a heavily customized Salesforce environment that mirrored legacy tools rather than leveraging modern platform capabilities — creating compounding technical and UX debt that hindered advisor productivity and blocked the adoption of scalable AI-driven workflows. As the Lead Experience Designer collaborating with Design Directorship and Solution Architects, I redefined the Financial Advisor experience by translating complex strategic requirements into a pixel-perfect, OOTB-first design blueprint. This engagement shifted the platform from a code-heavy legacy state to an 80% native Salesforce configuration, established the data foundation for Generative AI (Agentforce), and unified the end-to-end advisor-client lifecycle across 19,000+ branches.',
+        role:       'Senior Experience Designer & Interaction Lead',
+        duration:   '4-week strategic sprint',
+        stack:      'Salesforce FSC, Agentforce, Figma, LWC',
+        impact: '80% OOTB migration. ~40% faster load. Zero-gap AI-ready handoff',
+        discovery:  'Identified three core strategic challenges: technical debt from high-maintenance custom code preventing platform upgrades; information fragmentation forcing advisors through disjointed interfaces in a "swivel-chair" workflow; and AI unreadiness due to inconsistent data structures blocking native Einstein capabilities. Architected end-to-end flows for five priority business Epics — Growth & Prospecting, Opportunity Management, Intelligent Client Notes, Unified Sales Campaigns, and Modernized Communication — moving from written scenarios to high-fidelity interactive prototypes. Developed sophisticated prototypes deployed in multi-city branch validation sessions to test advisor sentiment and real-world workflow efficiency before committing to development.',
+        production: 'Created a pixel-perfect, OOTB-first Figma design rooted in "Engineering Empathy" — ensuring every component was technically viable within native Salesforce frameworks before a single line of code was written. Pioneered a Designer-Architect Loop: collaboratively mapping user actions to specific Salesforce Objects and Fields alongside Solution Architects, with the team delivering annotated Figma handoffs specifying exact Salesforce components to eliminate ambiguity at handoff. Designed the Holistic Advisor Dashboard as a single source of truth — re-architecting data-dense layouts into a prioritized At-a-Glance view, integrating Next Best Action predictive signals, and utilizing Dynamic Lightning Pages to create persona-based personalization that surfaces only critical KPIs per user role.',
+        value: 'Redefined how a Tier-1 financial services firm thinks about its advisor experience — proving that native-first Salesforce architecture, when designed with Engineering Empathy, is not a constraint but a competitive advantage. The OOTB-first design system established a replicable governance model that future business lines can inherit without starting from scratch, compounding the value of this engagement well beyond its original scope. By embedding the data foundation for Generative AI directly into the UI layer, the work transformed a modernization project into a long-term innovation enabler — positioning the firm to deploy AI-driven workflows without a platform rebuild.',
+        lessons: 'Working at the intersection of UX and system architecture taught me that the most consequential design decisions in complex environments are made before a single frame is opened in Figma. Understanding the data model, underlying logic, and technical constraints is what separates a beautiful prototype from a buildable one. The Designer-Architect Loop I pioneered—collaboratively mapping user actions to functional data requirements—became the most effective tool for eliminating handoff friction and ensuring zero-gap delivery. Designing across five concurrent workstreams reinforced that consistency is a strategic asset: a shared, "standard-first" design language allowed decisions to compound positively across the project, rather than creating divergent patterns for engineering to reconcile later.'
+      },
+      'bt': {
+        asset1: 'assets/bt-asset-1',
+        asset1caption: 'Unified Ecosystem Architecture: Maintaining design parity across high-level social marketing (top-left), a conversion-focused web presence (bottom-left), and the web application interface. The right side features the centralized user feed and a GitHub-style activity heatmap, translating individual wellbeing data into actionable, visual intelligence.',
+        asset1alt: 'A multi-platform collage showing the Project Purse ecosystem: the top-left features three LinkedIn marketing posts; the bottom-left shows the marketing website; the right side displays two web app screens including a personalized user feed and a GitHub-style data heatmap.',
+        asset2: 'assets/bt-asset-2',
+        asset2caption: 'The Data Lifecycle: Translating individual micro-recess habits into executive intelligence. The mobile flow (top) guides users through calendar integration, habit triggers, and sentiment-based posting. These localized interactions are then aggregated into geospatial heatmaps and behavioral analytics (bottom), allowing leadership to identify regional burnout risks in real-time.',
+        asset2alt: 'A two-tier collage showing the product in action: The top row displays six mobile screens showing the end-to-end recess loop from calendar scheduling to internal in-app posting. The bottom row shows two enterprise dashboards, featuring a color-coded geospatial heatmap of Canada and a detailed bar-graph breakdown of trending sentiment data.',
+        title:      'Project Purse: 360° Enterprise Wellbeing Platform',
+        industry:   'SaaS / Founding Designer / Full-Stack',
+        summary: 'As the founding and sole designer embedded in a cross-functional team of seven—including a Project Director, Project Manager, two Engineers, and a Data Scientist—I architected an end-to-end SaaS ecosystem purpose-built to combat workplace burnout. The platform operates on a dual-focused strategy: a gamified mobile engagement app that captures granular individual wellbeing data through low-friction micro-interactions, and a geospatial enterprise analytics dashboard that aggregates that data into high-level Sentiment Intelligence for executive leadership. The result is a scalable proof-of-concept that bridges the human experience of burnout with the organizational tools needed to act on it.',
+        role:       'Founding Product Designer & Frontend Integration Lead',
+        duration:   '12-Month Zero-to-One Deployment',
+        stack:      'Vanilla JS, HTML5/CSS3, Figma, Purse Design System',
+        impact:     '100% design parity, zero engineering debt',
+        discovery:  'Identified the core problem as the "Recess Gap" — the systemic disconnect between individual employee fatigue and organizational awareness of it. Translated complex Workplace Recess logic into a multi-platform service blueprint spanning mobile, enterprise web, and public marketing channels. Designed unified user flows across five product domains: Mobile Engagement, Design Systems, Enterprise Analytics, Public Branding, and Frontend Integration. Conducted validation sessions to pressure-test the hypothesis that brief, structured micro-recesses could serve as a reliable mechanism for generating high-quality organizational sentiment data — proving the model against traditional survey methods.',
+        production: 'Architected the Purse UI Kit—a modular design system built on a CSS-variable framework (Nunito typography scale, --Purse-primary tokens, and Adaptive Card components) to ensure 100% design-to-code parity. I engineered a gamified "Recess Loop" for mobile using Long-Press Interaction Patterns and contextual Action Bars to minimize cognitive load, incorporating "Save as Draft" safety nets to protect user focus. I partnered directly with the Data Scientist to co-design the Geospatial Drill-Down logic (National → Division → Detachment), transforming raw data into prioritized regional hotspots for executive decision-making. Additionally, I independently hand-coded the responsive marketing hub using a Vanilla stack (HTML5/CSS3/JS), achieving 100% Figma fidelity and optimized Core Web Vitals without third-party frameworks.',
+        value:'Delivered a production-ready UI kit and high-fidelity prototype that allowed the 3-person engineering team to enter development with zero design debt. Facilitated validation sessions that confirmed micro-recesses generate significantly higher-quality sentiment data compared to traditional pulse surveys. The hand-coded marketing site achieved 100% design parity with a lightweight Vanilla footprint, eliminating dependency on heavy third-party CMS platforms. By owning branding, UX architecture, and frontend development simultaneously, the Founding Designer model reduced the need for multiple specialist hires across the early-stage team.',
+        lessons: 'Owning every design surface simultaneously taught me to ruthlessly prioritize what needed to be perfect versus what needed to be done—a judgment now central to how I scope enterprise engagements. Hand-coding the marketing hub and collaborating with the Data Scientist revealed that the best interface decisions come from understanding the production code and data model first, catching debt before it hits a sprint. Finally, resource constraints forced a leaner, more defensible design system where every token and component had to earn its place, ultimately producing a more maintainable architecture than unconstrained exploration ever could.'
+      }
+    };
+
+    function openProject(id) {
+      const p = projectData[id];
+      document.getElementById('p-title').innerText      = p.title;
+      document.getElementById('p-industry').innerText   = p.industry;
+      document.getElementById('p-summary').innerText    = p.summary;
+      document.getElementById('p-role').innerText       = p.role;
+      document.getElementById('p-duration').innerText   = p.duration;
+      document.getElementById('p-stack').innerText      = p.stack;
+      document.getElementById('p-impact').innerText     = p.impact;
+      document.getElementById('p-discovery').innerText  = p.discovery;
+      document.getElementById('p-production').innerText = p.production;
+      document.getElementById('p-value').innerText      = p.value;
+      document.getElementById('p-lessons').innerText    = p.lessons;
+      document.getElementById('p-asset1-webp').srcset       = p.asset1 + '.webp';
+      document.getElementById('p-asset1-img').src           = p.asset1 + '.jpg';
+      document.getElementById('p-asset1-img').alt           = p.asset1alt;
+      document.getElementById('p-asset1-caption').innerText = p.asset1caption;
+      document.getElementById('p-asset2-webp').srcset       = p.asset2 + '.webp';
+      document.getElementById('p-asset2-img').src           = p.asset2 + '.jpg';
+      document.getElementById('p-asset2-img').alt           = p.asset2alt;
+      document.getElementById('p-asset2-caption').innerText = p.asset2caption;
+      showView('project-detail');
+    }
+
+    // ─── 3. EMAIL OBFUSCATION ───
+    (function() {
+      const u  = 'junejungjunejung';
+      const d  = 'gmail.com';
+      const el = document.getElementById('email-target');
+      const a  = document.createElement('a');
+      a.href      = `mailto:${u}@${d}`;
+      a.innerText = `${u}@${d}`;
+      a.style.fontFamily  = 'var(--font-sans)';
+      a.style.fontSize    = '13px';
+      a.style.color       = 'var(--black)';
+      a.style.transition  = 'color 0.15s';
+      a.addEventListener('mouseover', () => a.style.color = 'var(--grey-3)');
+      a.addEventListener('mouseout',  () => a.style.color = 'var(--black)');
+      el.appendChild(a);
+    })();
+
+    // ─── 4. FORM: HONEYPOT + SUBMIT ───
+    document.getElementById('inquiry-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // 1. Honeypot check (Spam_Shield)
+      const honey = e.target.querySelector('input[name="website_honey"]').value;
+      if (honey) return; 
+
+      const btn = e.target.querySelector('.submit-btn');
+      const msg = document.getElementById('form-msg');
+      const formData = new FormData(this);
+
+      // 2. UI Feedback
+      btn.textContent = 'Transmitting...';
+      btn.disabled = true;
+
+      // 3. AJAX Submission to Formspree
+      try {
+        const response = await fetch(this.action, {
+          method: this.method,
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          btn.textContent = 'Transmitted ✓';
+          msg.style.color = 'var(--success)';
+          msg.textContent = 'MESSAGE_RECEIVED: Response within 48h PST.';
+          this.reset();
+        } else {
+          throw new Error();
+        }
+      } catch (error) {
+        btn.textContent = 'Error';
+        msg.style.color = 'var(--error)';
+        msg.textContent = 'SYSTEM_ERROR: Please try again or use the email link.';
+      } finally {
+        setTimeout(() => {
+          btn.textContent = 'Send Inquiry';
+          btn.disabled = false;
+        }, 4000);
+      }
+    });
+
+    // ─── 5. DYNAMIC YEAR UPDATE ───
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
